@@ -1,12 +1,9 @@
 # Nome do aplicativo no Fly.io
 app = "todolist-springboot"
 
-
 # Configurações de máquinas virtuais
 [machine]
-# Quantidade de vCPUs que a máquina virtual terá
 cpu = "shared-1x"
-# Quantidade de memória para a máquina
 memory = 512 # 512 MB
 
 [build]
@@ -20,13 +17,16 @@ JAVA_OPTS = "-Xmx512m -Xms256m"
 internal_port = 8080
 protocol = "tcp"
 
-# Porta externa acessível
+# Configuração de concorrência (limite de conexões)
 [services.concurrency]
 hard_limit = 10
 soft_limit = 5
 
-[services.http]
-# Configuração de rotas para o serviço
+# Exposição de porta para tráfego HTTP
+[[services.ports]]
+handlers = ["http"]
+port = 80
+
 [[services.http.routes]]
 handler = "static"
 url = "/*"
