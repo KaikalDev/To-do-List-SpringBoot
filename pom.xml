@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>kaique.luan.dev</groupId>
-    <artifactId>Modulo_40</artifactId>
+    <artifactId>modulo-40</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Modulo_40</name>
     <description>Modulo_40</description>
