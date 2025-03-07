@@ -1,12 +1,14 @@
-FROM eclipse-temurin:11-jdk-alpine
+# Usa uma versão oficial do JDK 17
+FROM openjdk:17-jdk-slim
 
+# Define um diretório de trabalho
 WORKDIR /app
 
-# Altere 'app.jar' para o nome correto do arquivo gerado (no seu caso, 'Modulo_40-0.0.1-SNAPSHOT.jar')
+# Copia o JAR gerado pelo build do Maven/Gradle para dentro do container
 COPY target/modulo-40-0.0.1-SNAPSHOT.jar app.jar
 
-# Defina as opções do Java
-ENV JAVA_OPTS="-Xmx200m -Xms128m -XX:MaxMetaspaceSize=64m -XX:CompressedClassSpaceSize=16m"
+# Expõe a porta que a aplicação usa
+EXPOSE 8080
 
-# Comando para rodar o app com o perfil de produção
-CMD ["sh", "-c", "java $JAVA_OPTS -Dspring.profiles.active=prod -jar app.jar"]
+# Usa exec para iniciar o processo de forma mais segura
+ENTRYPOINT ["java", "-jar", "app.jar"]

@@ -1,32 +1,32 @@
 # Nome do aplicativo no Fly.io
 app = "todolist-springboot"
 
-# Configurações de máquinas virtuais
+# Configuração da máquina virtual
 [machine]
 cpu = "shared-1x"
-memory = 512 # 512 MB
+memory = 512 # 512 MB RAM
 
-[build]
-image = "registry.fly.io/todolist-springboot:deployment-fb728d3950d975d0821fe25b744ba83e"
+# Configuração para otimizar escalabilidade
+[mount]
+source = "todolist_data"
+destination = "/app/data"
+auto_stop_machines = true
+auto_start_machines = true
 
+# Variáveis de ambiente do Spring Boot
 [env]
 SPRING_PROFILES_ACTIVE = "prod"
 JAVA_OPTS = "-Xmx512m -Xms256m"
 
+# Configuração dos serviços
 [[services]]
 internal_port = 8080
 protocol = "tcp"
 
-# Configuração de concorrência (limite de conexões)
 [services.concurrency]
 hard_limit = 10
 soft_limit = 5
 
-# Exposição de porta para tráfego HTTP
 [[services.ports]]
 handlers = ["http"]
 port = 80
-
-[[services.http.routes]]
-handler = "static"
-url = "/*"
