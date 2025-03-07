@@ -1,0 +1,37 @@
+# Nome do aplicativo no Fly.io
+app = "todolist-springboot"
+
+# Configurações de rede (opcional)
+[build]
+# Como o Fly.io irá construir a imagem do Docker
+image = "registry.fly.io/todolist-springboot:deployment-fb728d3950d975d0821fe25b744ba83e"
+
+# Configurações de máquinas virtuais
+[machine]
+# Quantidade de vCPUs que a máquina virtual terá
+cpu = "shared-1x"
+# Quantidade de memória para a máquina
+memory = 512 # 512 MB
+
+# Ambiente de execução (não deve ser alterado se você usar o Docker)
+[env]
+SPRING_PROFILES_ACTIVE = "prod"
+JAVA_OPTS = "-Xmx512m -Xms256m"
+
+# Configuração de rede do Fly.io (adicionar servidores ou proxies)
+[[services]]
+# Porta do aplicativo
+http_checks = []
+internal_port = 8080
+protocol = "tcp"
+
+# Porta externa acessível
+[services.concurrency]
+hard_limit = 10
+soft_limit = 5
+
+[services.http]
+# Configuração de rotas para o serviço
+[[services.http.routes]]
+handler = "static"
+url = "/*"
