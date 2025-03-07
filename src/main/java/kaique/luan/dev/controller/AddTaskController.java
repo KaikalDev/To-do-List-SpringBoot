@@ -50,9 +50,7 @@ public class AddTaskController {
             @RequestParam("options") Optional<String> options
 
     ) {
-        User user = userService.consultar(
-                Long.parseLong(CookiesService.getCookie(request))
-        );
+        User user = userService.consultar(CookiesService.getCookie(request));
         if (user == null) {
             return "redirect:/login";
         }

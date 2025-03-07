@@ -40,9 +40,7 @@ public class ListTaskController {
                            HttpServletRequest request,
                            @RequestParam("filter") String filter,
                            @RequestParam("title") String title) {
-        User user = userService.consultar(
-                Long.parseLong(CookiesService.getCookie(request))
-        );
+        User user = userService.consultar(CookiesService.getCookie(request));
         if (user == null) {
             return "redirect:/login";
         }

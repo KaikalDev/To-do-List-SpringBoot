@@ -37,9 +37,7 @@ public class LoginController {
             Model model,
             HttpServletResponse response,
             HttpServletRequest request) {
-        User userCookie = service.consultar(
-                Long.parseLong(CookiesService.getCookie(request))
-        );
+        User userCookie = service.consultar(CookiesService.getCookie(request));
 
         if (userCookie != null) {
             model.addAttribute("user", userCookie.getUserName());

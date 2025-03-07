@@ -14,4 +14,4 @@ EXPOSE 8080
 ENV JAVA_OPTS="-Xms256m -Xmx512m"
 
 # Usa exec para iniciar o processo de forma mais segura
-ENTRYPOINT ["java", "$JAVA_OPTS", "-jar", "app.jar"]
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
