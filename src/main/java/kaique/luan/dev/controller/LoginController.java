@@ -35,13 +35,7 @@ public class LoginController {
             @RequestParam("username") String username,
             @RequestParam("password") String password,
             Model model,
-            HttpServletResponse response,
-            HttpServletRequest request) {
-        User userCookie = service.consultar(CookiesService.getCookie(request));
-
-        if (userCookie != null) {
-            model.addAttribute("user", userCookie.getUserName());
-        }
+            HttpServletResponse response) {
 
         if (!service.UserExist(username)) {
             model.addAttribute("errorUser", "User does not exist.");
