@@ -10,6 +10,25 @@
     gap: 8px;
 }
 
+.form-buscar {
+    display: flex;
+    gap: 8px;
+}
+
+.form-buscar-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    width: 35px;
+    padding: 2px;
+    border: 1px solid #a1a1a1;
+    background-color: #fcfcfc;
+    color: #5e5e5e;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
 .filter {
     padding: 8px;
     border: 1px solid #a1a1a1;

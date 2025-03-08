@@ -33,6 +33,11 @@ public class RegisterController {
             @RequestParam("confirmPassword") String confirmPassword,
             Model model,
             HttpSession session) {
+        if (username.trim().isEmpty() || password.trim().isEmpty()) {
+            model.addAttribute("errorEmpty", "Username and password are required");
+            return "Register";
+        }
+
         if (service.UserExist(username) || service.EmailExist(email) || !password.equals(confirmPassword)) {
             if (service.UserExist(username)) {
                 model.addAttribute("errorUser", "Username already exists.");

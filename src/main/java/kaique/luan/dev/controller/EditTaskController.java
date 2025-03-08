@@ -46,11 +46,19 @@ public class EditTaskController {
     ) {
         Task task = service.consultar(Long.parseLong(taskId));
 
+        if (title.trim().isEmpty() || description.trim().isEmpty()) {
+            Collection<TaskLevel> leves = TaskLevel.getValues();
+            model.addAttribute("levels", leves);
+            model.addAttribute("task", task);
+            model.addAttribute("errorEmpty", "Title and description are required");
+            return "EditTask";
+        }
+
         if (options.isEmpty() || TaskLevel.getByName(options.get()) == null) {
             Collection<TaskLevel> leves = TaskLevel.getValues();
             model.addAttribute("levels", leves);
             model.addAttribute("task", task);
-            model.addAttribute("error", "Is required.");
+            model.addAttribute("errorOption", "Is required.");
             return "EditTask";
         }
 

@@ -54,7 +54,7 @@ public class ListTaskController {
 
         model.addAttribute("tasksSize", tasks.size());
 
-        if (filter != null && !filter.isEmpty()) {
+        if (filter != null && !filter.trim().isEmpty()) {
             TaskStatus status = TaskStatus.getByName(filter);
             TaskLevel level = TaskLevel.getByName(filter);
             if (status != null) {
@@ -64,7 +64,7 @@ public class ListTaskController {
             }
         }
 
-        if (title != null && !title.isEmpty()) {
+        if (title != null && !title.trim().isEmpty()) {
             String titleLowerCase = title.toLowerCase();
             tasksFiltered = taskservice.filter(titleLowerCase, tasksFiltered);
         }

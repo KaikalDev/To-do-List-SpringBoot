@@ -37,6 +37,11 @@ public class LoginController {
             Model model,
             HttpServletResponse response) {
 
+        if (username.trim().isEmpty() || password.trim().isEmpty()) {
+            model.addAttribute("errorEmpty", "Username and password are required");
+            return "Login";
+        }
+
         if (!service.UserExist(username)) {
             model.addAttribute("errorUser", "User does not exist.");
             return "Login";

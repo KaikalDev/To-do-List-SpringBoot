@@ -24,6 +24,7 @@
                            class="form-input"
                            type="text"
                            required
+                           minlength="3"
                            maxlength="50"
                            name="title"
                            placeholder="Title"
@@ -33,6 +34,7 @@
                     <textarea id="description"
                               class="form-input"
                               required
+                              minlength="3"
                               maxlength="150"
                               name="description"
                               placeholder="Description"></textarea>
@@ -50,7 +52,8 @@
                         >
                     </label>
 
-                    <span class="error" th:if="${error}" th:text="${error}"></span>
+                    <span class="error" th:if="${errorOption}" th:text="${errorOption}"></span>
+                    <span class="error" th:if="${errorEmpty}" th:text="${errorEmpty}"></span>
 
                     <button class="form-button button" type="submit">To add</button>
 

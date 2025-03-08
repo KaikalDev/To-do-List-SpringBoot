@@ -27,10 +27,10 @@
                  class="form-input"
                  type="text"
                  required
+                 min="5"
                  maxlength="50"
                  name="username"
                  placeholder="User name"
-                 th:value="${user != null ? user : ''}"
           >
 
           <span class="error" th:if="${errorUser}" th:text="${errorUser}"></span>
@@ -48,7 +48,9 @@
 
           <span class="error" th:if="${errorPassword}" th:text="${errorPassword}"></span>
 
-          <button class="form-button button" type="submit" onclick="iniciarLoader()">Login</button>
+          <span class="error" th:if="${errorEmpty}" th:text="${errorEmpty}"></span>
+
+          <button class="form-button button" type="submit" >Login</button>
 
         </form>
       </main>
